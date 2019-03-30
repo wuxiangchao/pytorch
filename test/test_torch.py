@@ -10730,7 +10730,6 @@ tensor([[[1., 1., 1.,  ..., 1., 1., 1.],
 
     def test_unique_dim(self):
         self.assertFalse(hasattr(torch, 'unique_dim'))
-        torch.unique_dim = torch._C._VariableFunctions.unique_dim
 
         def run_test(dtype=torch.float, device=torch.device('cpu')):
             x = torch.tensor([[[1., 1.],
@@ -10785,7 +10784,7 @@ tensor([[[1., 1., 1.,  ..., 1., 1., 1.],
             self.assertEqual(expected_unique_dim0, x_unique)
             self.assertEqual(expected_inverse_dim0, x_inverse)
 
-            x_unique, _, x_counts = torch.unique_dim(
+            x_unique, x_counts = torch.unique(
                 x,
                 return_inverse=False,
                 return_counts=True,
@@ -10793,7 +10792,7 @@ tensor([[[1., 1., 1.,  ..., 1., 1., 1.],
             self.assertEqual(expected_unique_dim0, x_unique)
             self.assertEqual(expected_counts_dim0, x_counts)
 
-            x_unique, x_inverse, x_counts = torch.unique_dim(
+            x_unique, x_inverse, x_counts = torch.unique(
                 x,
                 return_inverse=True,
                 return_counts=True,
@@ -10813,7 +10812,7 @@ tensor([[[1., 1., 1.,  ..., 1., 1., 1.],
             self.assertEqual(expected_unique_dim1, x_unique)
             self.assertEqual(expected_inverse_dim1, x_inverse)
 
-            x_unique, _, x_counts = torch.unique_dim(
+            x_unique, x_counts = torch.unique(
                 x,
                 return_inverse=False,
                 return_counts=True,
@@ -10821,7 +10820,7 @@ tensor([[[1., 1., 1.,  ..., 1., 1., 1.],
             self.assertEqual(expected_unique_dim1, x_unique)
             self.assertEqual(expected_counts_dim1, x_counts)
 
-            x_unique, x_inverse, x_counts = torch.unique_dim(
+            x_unique, x_inverse, x_counts = torch.unique(
                 x,
                 return_inverse=True,
                 return_counts=True,
@@ -10841,7 +10840,7 @@ tensor([[[1., 1., 1.,  ..., 1., 1., 1.],
             self.assertEqual(expected_unique_dim2, x_unique)
             self.assertEqual(expected_inverse_dim2, x_inverse)
 
-            x_unique, _, x_counts = torch.unique_dim(
+            x_unique, x_counts = torch.unique(
                 x,
                 return_inverse=False,
                 return_counts=True,
@@ -10849,7 +10848,7 @@ tensor([[[1., 1., 1.,  ..., 1., 1., 1.],
             self.assertEqual(expected_unique_dim2, x_unique)
             self.assertEqual(expected_counts_dim2, x_counts)
 
-            x_unique, x_inverse, x_counts = torch.unique_dim(
+            x_unique, x_inverse, x_counts = torch.unique(
                 x,
                 return_inverse=True,
                 return_counts=True,
