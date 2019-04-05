@@ -73,7 +73,11 @@ std::vector<Tensor> broadcast(const Tensor& tensor, IntArrayRef devices) {
     IntArrayRef loop_devices = type.is_cuda() ? devices.slice(1) : devices;
     for (auto device : loop_devices) {
       _device_guard.set_index(device);
-      tensors.push_back(gpu_type.copy(tensor, true));
+      tensors.push_back(tensor.to(
+          type.device_type(),
+          type.scalarType(),
+          /*non_blocking*/true,
+          /*copy*/true));
     }
   }
   return tensors;
