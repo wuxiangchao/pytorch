@@ -103,6 +103,7 @@ Tensor & lt_(Tensor& self, const Tensor & other) {
 }
 
 Tensor & gt_(Tensor& self, Scalar other) {
+  std::cout << "leg def gt_" << std::endl;
   return at::legacy::th::_th_gt_(self, other);
 }
 
@@ -341,18 +342,26 @@ Tensor le(const Tensor & self, const Tensor & other) {
 }
 
 Tensor & gt_out(Tensor & result, const Tensor & self, Scalar other) {
+  std::cout << "leg def gt_out" << std::endl;
   return at::legacy::th::_th_gt_out(result, self, other);
 }
 
 Tensor gt(const Tensor & self, Scalar other) {
+  std::cout << "[Legacy def] gt" << std::endl;
+  std::cout << "---> tensor self.dtype(): " << self.dtype().name() << std::endl;
+  std::cout << "---> tensor self.sizes(): " << self.sizes() << std::endl;
+  std::cout << "---> Scalar other: " << other << std::endl;
+
   return at::legacy::th::_th_gt(self, other);
 }
 
 Tensor & gt_out(Tensor & result, const Tensor & self, const Tensor & other) {
+  std::cout << "leg def gt_out 2" << std::endl;
   return at::legacy::th::_th_gt_out(result, self, other);
 }
 
 Tensor gt(const Tensor & self, const Tensor & other) {
+  std::cout << "leg def gt2" << std::endl;
   return at::legacy::th::_th_gt(self, other);
 }
 

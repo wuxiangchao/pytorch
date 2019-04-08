@@ -38,6 +38,7 @@ TensorImpl::TensorImpl(TensorTypeId type_id, const caffe2::TypeMeta& data_type, 
   // Variables, UndefinedTensors and SparseTensors don't have storages.
   if (!is_variable && type_id != UndefinedTensorId() && data_type.id() != caffe2::TypeIdentifier::uninitialized()
       && type_id != SparseCPUTensorId() && type_id != SparseCUDATensorId()) {
+        std::cout << "TensorImpl.cpp::TensorImpl data_type: " << data_type.name() << std::endl;
     storage_ = Storage(data_type, 0, allocator, true);
   }
 }

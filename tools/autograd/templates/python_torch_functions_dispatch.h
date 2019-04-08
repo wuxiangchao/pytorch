@@ -30,6 +30,7 @@ static at::Type& default_type() {
 }
 
 static ScalarType default_scalar_type() {
+  std::cout << "Getting def1" << std::endl;
   return torch::tensors::get_default_scalar_type();
 }
 

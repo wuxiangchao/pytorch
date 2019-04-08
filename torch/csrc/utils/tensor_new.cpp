@@ -122,7 +122,7 @@ ScalarType infer_scalar_type(PyObject *obj) {
   }
   if (PyBool_Check(obj)) {
     // TODO: infer Bool when we have Bool ScalarType
-    return ScalarType::Byte;
+    return ScalarType::Bool;
   }
   if (THPVariable_Check(obj)) {
     auto var = reinterpret_cast<THPVariable*>(obj)->cdata;
@@ -515,6 +515,7 @@ Tensor tensor_ctor(const Type& type, ScalarType scalar_type, PyObject* args, PyO
     "tensor(PyObject* data, *, ScalarType dtype=None, Device? device=None, bool pin_memory=False, bool requires_grad=False)",
   });
 
+  std::cout << "[tensor_new] Creating a new tensor. scalar type: " << scalar_type << std::endl;
   ParsedArgs<5> parsed_args;
   auto r = parser.parse(args, kwargs, parsed_args);
   if (r.idx == 0) {

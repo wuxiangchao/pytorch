@@ -60,6 +60,7 @@ static PyObject * THPVariable__is_view(PyObject *self, PyObject* args)
 static PyObject * THPVariable_apply_(PyObject* self, PyObject* arg)
 {
   HANDLE_TH_ERRORS
+  std::cout << "THPVariable_apply_" << std::endl;
   auto& self_ = reinterpret_cast<THPVariable*>(self)->cdata;
   if (self_.requires_grad()) {
     throw std::runtime_error(
@@ -553,6 +554,7 @@ static PyObject * THPVariable_new_zeros(PyObject* self, PyObject* args, PyObject
 static PyObject * THPVariable_storage(PyObject* self, PyObject* arg)
 {
   HANDLE_TH_ERRORS
+  std::cout << "THPVariable_storage1231245123" << std::endl;
   auto& self_ = reinterpret_cast<THPVariable*>(self)->cdata;
   return createPyObject(self_.storage());
   END_HANDLE_TH_ERRORS
@@ -561,6 +563,7 @@ static PyObject * THPVariable_storage(PyObject* self, PyObject* arg)
 static PyObject * THPVariable_storage_type(PyObject* self, PyObject* arg)
 {
   HANDLE_TH_ERRORS
+  std::cout << "THPVariable_storage2" << std::endl;
   auto& self_ = reinterpret_cast<THPVariable*>(self)->cdata;
   auto storage = THPObjectPtr(createPyObject(self_.storage()));
   auto storage_type = (PyObject*)Py_TYPE(storage);
@@ -607,6 +610,8 @@ static PyObject * THPVariable_tolist(PyObject* self, PyObject* args)
 static PyObject * THPVariable_type(PyObject* self, PyObject* args, PyObject* kwargs)
 {
   HANDLE_TH_ERRORS
+  std::cout << "THPVariable_type" << std::endl;
+
   static PythonArgParser parser({
     "type(PyObject* dtype=None, bool non_blocking=False)",
     "type(PyObject* dtype=None, bool async=False)|deprecated"

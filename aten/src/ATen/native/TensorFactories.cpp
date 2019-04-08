@@ -94,6 +94,8 @@ Tensor empty_cpu(IntArrayRef size, const TensorOptions& options) {
   AT_ASSERT(!options.is_variable());  // is_variable should have been 'unpacked'  // TODO: remove this when Variable and Tensor are merged
   check_size_nonnegative(size);
 
+  std::cout << "[Tensor Factories] Calling empty_cpy. TensorOptions type: " << options.dtype().name() << std::endl;
+
   c10::Allocator* allocator;
   if (options.pinned_memory()) {
     allocator = detail::getCUDAHooks().getPinnedMemoryAllocator();
@@ -102,6 +104,7 @@ Tensor empty_cpu(IntArrayRef size, const TensorOptions& options) {
   }
 
   int64_t nelements = prod_intlist(size);
+  //auto dtype = scalarTypeToTypeMeta(ScalarType::Bool);
   auto dtype = options.dtype();
   auto storage_impl = c10::make_intrusive<StorageImpl>(
     dtype,

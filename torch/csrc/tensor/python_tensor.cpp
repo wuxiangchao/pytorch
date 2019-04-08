@@ -390,6 +390,7 @@ at::Type& get_default_tensor_type() {
 }
 
 ScalarType get_default_scalar_type() {
+  std::cout << "Getting def2" << std::endl;
   return typeMetaToScalarType(get_default_dtype());
 }
 }} // namespace torch::tensors

@@ -21,6 +21,7 @@ struct C10_API StorageImpl final : public c10::intrusive_ptr_target {
         resizable_(resizable),
         received_cuda_(false),
         allocator_(allocator) {
+    std::cout << "storage impl. data_type: " << data_type.name() << std::endl;
     if (resizable) {
       AT_ASSERTM(
           allocator_, "For resizable storage, allocator must be provided");
